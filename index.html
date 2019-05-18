@@ -12,8 +12,7 @@
   <!-- contianer & title -->
   <div class="container my-4">
     <h1 class="my-4 text-center">Millenial Chat</h1>
-  </div>
-  <!-- buttons for chatrooms -->
+    <!-- buttons for chatrooms -->
   <div class="chat-rooms mb-3 text-center">
     <div class="my-2">Choose a chatroom:</div>
     <button class="btn" id="general">#general</button>
@@ -52,7 +51,31 @@
     </div>
     <div class="update-msg"></div>
   </form>
+  </div>
+  
 
+
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase-firestore.js"></script>
+
+
+
+  <script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+      apiKey: "AIzaSyAli8DDmWJnGvQ6tg-AbYoc2VLXAw0IwbY",
+      authDomain: "monkey-demo-184c3.firebaseapp.com",
+      databaseURL: "https://monkey-demo-184c3.firebaseio.com",
+      projectId: "monkey-demo-184c3",
+      storageBucket: "monkey-demo-184c3.appspot.com",
+      messagingSenderId: "727373513316",
+      appId: "1:727373513316:web:f53b0848bd74332e"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+  </script>
   <script src="scripts/chat.js"></script>
   <script src="scripts/ui.js"></script>
   <script src="scripts/app.js"></script>
