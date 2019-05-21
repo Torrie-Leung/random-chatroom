@@ -3,6 +3,7 @@ class Chatroom{
     this.room = room;
     this.username = username;
     this.chats = db.collection('chats');
+    this.unsub;
   }
   //add new chat documents
   async addChat(msg){
@@ -21,7 +22,7 @@ class Chatroom{
   }
   //set up real time listener
   getChats(callback){
-    this.chats
+    this.unsub = this.chats
       .where('room','==',this.room)
       .orderBy('created_at')
       .onSnapshot(snapshot => {
@@ -30,14 +31,31 @@ class Chatroom{
             //update the ui
             callback(change.doc.data())
           }
-        })
-      })
+        });
+      });
+  }
+
+  updateName(username){
+    this.username = username;
+  }
+
+  updateRoom(room){
+    this.room = room;
+    console.log('room updated');
+    if(this.unsub){
+      this.unsub();
+    }
   }
 }
 
-const chatroom = new Chatroom('eco', 'chimp');
+// const chatroom = new Chatroom('eco', 'chimp');
 
-chatroom.getChats((data) => {
-  console.log(data);
-})
 
+
+// setTimeout(() => {
+//   chatroom.updateRoom('gaming');
+//   chatroom.getChats((data) => {
+//     console.log(data);
+//   });
+//   chatroom.addChat('hi');
+// },3000);
