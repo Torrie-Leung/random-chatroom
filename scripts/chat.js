@@ -20,7 +20,7 @@ class Chatroom{
     const response = await this.chats.add(chat);
     return response;
   }
-  //set up real time listener
+  //set up a real time listener
   getChats(callback){
     this.unsub = this.chats
       .where('room','==',this.room)
@@ -42,6 +42,7 @@ class Chatroom{
   updateRoom(room){
     this.room = room;
     console.log('room updated');
+    // if unsub has a value, then we can unsubsribe the changes from the old room
     if(this.unsub){
       this.unsub();
     }
@@ -54,6 +55,7 @@ class Chatroom{
 
 // setTimeout(() => {
 //   chatroom.updateRoom('gaming');
+//   chatroom.updateName('yoshi');
 //   chatroom.getChats((data) => {
 //     console.log(data);
 //   });
